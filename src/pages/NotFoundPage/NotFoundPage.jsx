@@ -4,14 +4,18 @@ import { Link } from 'react-router-dom';
 
 const NotFoundPage = () => {
   return (
-    <div className={css['container']}>
-      <p>
-        The page does not exist.
-        <Link to="/" className={css['home-link']}>
-          Return to Home.
-        </Link>
-      </p>
-    </div>
+    <main>
+      <section>
+        <div className={css.container}>
+          <h3>
+            {`The page doesn't exist.`}
+            <Link to="/" className={css.link}>
+              Return to Home.
+            </Link>
+          </h3>
+        </div>
+      </section>
+    </main>
   );
 };
 
