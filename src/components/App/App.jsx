@@ -7,6 +7,7 @@ import { Toaster } from 'react-hot-toast';
 const Header = lazy(() => import('../../components/Header/Header'));
 
 const HomePage = lazy(() => import('../../pages/HomePage/HomePage'));
+const CatalogPage = lazy(() => import('../../pages/CatalogPage/CatalogPage'));
 const NotFoundPage = lazy(() =>
   import('../../pages/NotFoundPage/NotFoundPage')
 );
@@ -19,6 +20,7 @@ const App = () => {
       <Suspense fallback={<div className={css.loader}></div>}>
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/catalog" element={<CatalogPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>
