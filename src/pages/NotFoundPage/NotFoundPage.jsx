@@ -7,12 +7,12 @@ const NotFoundPage = () => {
     <main>
       <section>
         <div className={css.container}>
-          <h3>
+          <h2 className={css.text}>
             {`The page doesn't exist.`}
             <Link to="/" className={css.link}>
               Return to Home.
             </Link>
-          </h3>
+          </h2>
         </div>
       </section>
     </main>
