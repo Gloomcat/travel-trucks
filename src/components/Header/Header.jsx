@@ -6,15 +6,17 @@ import Navigation from '../../components/Navigation/Navigation';
 
 const Header = () => {
   return (
-    <header className={css.header}>
-      <img
-        className={css.logo}
-        src={Logo}
-        alt="TravelTrucks Logo"
-        width="136"
-        height="15"
-      />
-      <Navigation />
+    <header>
+      <div className={css.container}>
+        <img
+          className={css.logo}
+          src={Logo}
+          alt="TravelTrucks Logo"
+          width="136"
+          height="15"
+        />
+        <Navigation />
+      </div>
     </header>
   );
 };
