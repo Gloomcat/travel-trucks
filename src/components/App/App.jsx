@@ -4,7 +4,8 @@ import { lazy, Suspense, Fragment } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 
-const Header = lazy(() => import('../../components/Header/Header'));
+import Header from '../Header/Header';
+import Loader from '../Loader/Loader';
 
 const HomePage = lazy(() => import('../../pages/HomePage/HomePage'));
 const CatalogPage = lazy(() => import('../../pages/CatalogPage/CatalogPage'));
@@ -17,7 +18,7 @@ const App = () => {
     <Fragment>
       <Toaster position="top-right" />
       <Header />
-      <Suspense fallback={<div className={css.loader}></div>}>
+      <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/catalog" element={<CatalogPage />} />
