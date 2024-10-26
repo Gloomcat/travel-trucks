@@ -1,20 +1,14 @@
 import css from './Header.module.css';
 
-import Logo from '../../assets/logo.svg';
+import Icon from '../Icon/Icon';
 
-import Navigation from '../../components/Navigation/Navigation';
+import Navigation from '../Navigation/Navigation';
 
 const Header = () => {
   return (
     <header>
       <div className={css.container}>
-        <img
-          className={css.logo}
-          src={Logo}
-          alt="TravelTrucks Logo"
-          width="136"
-          height="15"
-        />
+        <Icon className={css.logo} name={'icon-logo'} width={136} height={15} />
         <Navigation />
       </div>
     </header>
