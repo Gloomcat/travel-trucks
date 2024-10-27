@@ -30,16 +30,40 @@ const Camper = ({ camperData }) => {
       name: 'Automatic',
       icon: transmission === 'automatic' ? 'icon-diagram' : null,
     },
-    { name: engine, icon: 'icon-fuel' },
-    { name: 'Kitchen', icon: kitchen ? 'icon-cup-hot' : null },
-    { name: 'AC', icon: AC ? 'icon-wind' : null },
-    { name: 'Bathroom', icon: bathroom ? 'icon-shower' : null },
-    { name: 'TV', icon: TV ? 'icon-tv' : null },
-    { name: 'Radio', icon: radio ? 'icon-radio' : null },
-    { name: 'Refrigerator', icon: refrigerator ? 'icon-fridge' : null },
-    { name: 'Microwave', icon: microwave ? 'icon-microwave' : null },
-    { name: 'Gas', icon: gas ? 'icon-gas-stove' : null },
-    { name: 'Water', icon: water ? 'icon-water' : null },
+    { name: engine, class: 'fill-icon', icon: 'icon-fuel' },
+    {
+      name: 'Kitchen',
+      class: 'fill-icon',
+      icon: kitchen ? 'icon-cup-hot' : null,
+    },
+    { name: 'AC', class: 'fill-icon', icon: AC ? 'icon-wind' : null },
+    {
+      name: 'Bathroom',
+      class: 'fill-icon',
+      icon: bathroom ? 'icon-shower' : null,
+    },
+    { name: 'TV', class: 'fill-icon', icon: TV ? 'icon-tv' : null },
+    { name: 'Radio', class: 'fill-icon', icon: radio ? 'icon-radio' : null },
+    {
+      name: 'Refrigerator',
+      class: 'fill-icon',
+      icon: refrigerator ? 'icon-fridge' : null,
+    },
+    {
+      name: 'Microwave',
+      class: 'stroke-icon',
+      icon: microwave ? 'icon-microwave' : null,
+    },
+    {
+      name: 'Gas',
+      class: 'stroke-icon',
+      icon: gas ? 'icon-gas-stove' : null,
+    },
+    {
+      name: 'Water',
+      class: 'stroke-icon',
+      icon: water ? 'icon-water' : null,
+    },
   ].filter(feature => feature.icon); // Filter out features without icons
 
   return (
@@ -85,7 +109,7 @@ const Camper = ({ camperData }) => {
           {features.map(feature => (
             <li key={feature.name} className={css.feature}>
               <Icon
-                className={css['feature-icon']}
+                className={css[feature.class]}
                 name={feature.icon}
                 width={16}
                 height={16}

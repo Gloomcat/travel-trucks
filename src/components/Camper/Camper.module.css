@@ -40,10 +40,17 @@
   font-weight: 600;
 }
 
-.favorite-icon,
-.feature-icon {
+.favorite-icon {
   fill: #101828;
-  /* stroke: #101828; */
+}
+
+.stroke-icon {
+  stroke: #101828;
+  fill: transparent;
+}
+
+.fill-icon {
+  fill: #101828;
 }
 
 .favorite-icon {
