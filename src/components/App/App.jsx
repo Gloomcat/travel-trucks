@@ -16,7 +16,7 @@ const NotFoundPage = lazy(() =>
 const App = () => {
   return (
     <Fragment>
-      <Toaster position="top-right" />
+      <Toaster />
       <Header />
       <Suspense fallback={<Loader />}>
         <Routes>

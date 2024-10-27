@@ -1,0 +1,15 @@
+.load-more-button {
+  width: 145px;
+  padding: 16px 32px;
+  border: none;
+  border-radius: 40px;
+  border: 1px solid #DADDE1;
+  background-color: #ffffff;
+  color: #101828;
+  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.load-more-button:hover,
+.load-more-button:focus {
+  border-color: #D84343;
+}

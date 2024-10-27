@@ -1,7 +1,12 @@
-.catalog {
+.container {
+  display: flex;
+  padding: 48px 64px;
+  color: #ffffff;
 }
 
-.container {
-  padding: 0 64px;
-  color: #ffffff;
+.campers {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
 }
