@@ -54,7 +54,7 @@ const Camper = ({ camperData }) => {
               className={css['favorite-icon']}
               name="icon-heart"
               width={24}
-              height={20}
+              height={24}
             />
           </div>
           <div className={css.meta}>

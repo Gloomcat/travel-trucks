@@ -16,7 +16,7 @@ export const fetchCampers = createAsyncThunk(
         },
       };
 
-      const response = await axios.get('/camper', config);
+      const response = await axios.get('/campers', config);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
