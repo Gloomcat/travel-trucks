@@ -1,0 +1,77 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  color: #6C717B;
+  font-size: 16px;
+}
+
+.row {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input {
+  width: 360px;
+  padding: 18px 18px 18px 46px;
+  outline: none;
+  border: none;
+  border-radius: 12px;
+  background-color: #F7F7F7;
+  color: #6C717B;
+  font-size: 16px;
+}
+
+.input:focus {
+  color: #101828;
+}
+
+.icon {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  fill: #6C717B;
+}
+
+.input:focus + .icon {
+  fill: #101828;
+}
+
+.dropdown {
+  display: none;
+  visibility: hidden;
+  width: 360px;
+  max-height: 200px;
+  overflow-y: auto;
+  background-color: #F7F7F7;
+  border-radius: 12px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 18px;
+  z-index: 1000;
+}
+
+.container:focus-within .dropdown {
+  display: block;
+  visibility: visible;
+}
+
+.dropdown-item {
+  padding: 5px 12px;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #6C717B;
+  cursor: pointer;
+  transition-property: all;
+  transition: 0.2s ease;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus,
+.dropdown-item:active {
+  color: #101828;
+  background-color: #DADDE1;
+}

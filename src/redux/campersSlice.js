@@ -4,11 +4,14 @@ import { fetchCampers } from './campersOperations';
 
 const handlePending = state => {
   state.isLoading = true;
+  state.error = null;
 };
 
 const handleRejected = (state, action) => {
   state.isLoading = false;
   state.error = action.payload;
+  state.items = [];
+  state.total = 0;
 };
 
 const slice = createSlice({
@@ -22,6 +25,7 @@ const slice = createSlice({
   reducers: {
     resetCampers(state) {
       state.items = [];
+      state.total = 0;
     },
   },
   extraReducers: builder => {

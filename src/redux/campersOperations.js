@@ -7,14 +7,19 @@ export const CAMPERS_LIMIT = 4;
 
 export const fetchCampers = createAsyncThunk(
   '/campers/fetchCampers',
-  async (page, thunkAPI) => {
+  async (params, thunkAPI) => {
     try {
       const config = {
         params: {
           limit: CAMPERS_LIMIT,
-          page: page,
+          page: params.page,
         },
       };
+
+      if (params.location !== '') {
+        console.log(params.location);
+        config.params.location = params.location;
+      }
 
       const response = await axios.get('/campers', config);
       return response.data;
