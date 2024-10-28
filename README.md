@@ -61,16 +61,16 @@ To set up the project locally, follow these steps:
 4. **Favorites**: Click the heart icon to add a camper to your favorites list.
 
 ### Technologies Used
-1. Frontend:
-    **React**: UI Framework
-    **Redux Toolkit**: State management
-    **React Router**: Routing
-    **CSS Modules**: Scoped styling
+1. **Frontend**:
+- **React**: UI Framework
+- **Redux Toolkit**: State management
+- **React Router**: Routing
+- **CSS Modules**: Scoped styling
 
-2. Backend:
-    **MockAPI**: For data storage
+2. **Backend**:
+- **MockAPI**: For data storage
 
-3. Main Utilities:
-    **Axios**: For API calls
-    **Redux Persist**: To persist state across sessions
-    **Vite**: Bundler and builder
+3. **Main Utilities**:
+- **Axios**: For API calls
+- **Redux Persist**: To persist state across sessions
+- **Vite**: Bundler and builder
