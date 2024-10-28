@@ -3,8 +3,6 @@ import css from './CatalogPage.module.css';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import toast from 'react-hot-toast';
-
 import { fetchCampers, CAMPERS_LIMIT } from '../../redux/campersOperations';
 import {
   resetCampers,
@@ -17,11 +15,14 @@ import {
   selectCurrentPage,
 } from '../../redux/paginationSlice';
 import { selectLocation } from '../../redux/locationSlice';
+import { selectChosenFeatures } from '../../redux/filtersSlice';
+import { selectChosenVehicleType } from '../../redux/filtersSlice';
 
 import CamperList from '../../components/CamperList/CamperList';
 import LoadMore from '../../components/LoadMore/LoadMore';
 import Loader from '../../components/Loader/Loader';
 import Location from '../../components/Location/Location';
+import Filters from '../../components/Filters/Filters';
 
 const CatalogPage = () => {
   const loading = useSelector(selectIsLoading);
@@ -32,21 +33,26 @@ const CatalogPage = () => {
 
   const location = useSelector(selectLocation);
 
+  const selectedFeatures = useSelector(selectChosenFeatures);
+  const selectedVehicleType = useSelector(selectChosenVehicleType);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(resetCampers());
     dispatch(resetPagination());
-  }, [dispatch, location]);
+  }, [dispatch, location, selectedFeatures, selectedVehicleType]);
 
   useEffect(() => {
     dispatch(
       fetchCampers({
         page: current,
         location: location,
+        features: selectedFeatures,
+        vehicle: selectedVehicleType,
       })
     );
-  }, [dispatch, current, location]);
+  }, [dispatch, current, location, selectedFeatures, selectedVehicleType]);
 
   return (
     <main>
@@ -54,6 +60,7 @@ const CatalogPage = () => {
         <div className={css.container}>
           <div className={css.params}>
             <Location />
+            <Filters />
           </div>
           <div className={css.campers}>
             {error && (

@@ -7,18 +7,42 @@ export const CAMPERS_LIMIT = 4;
 
 export const fetchCampers = createAsyncThunk(
   '/campers/fetchCampers',
-  async (params, thunkAPI) => {
+  async ({ page, location, features, vehicle }, thunkAPI) => {
     try {
       const config = {
         params: {
           limit: CAMPERS_LIMIT,
-          page: params.page,
+          page: page,
         },
       };
 
-      if (params.location !== '') {
-        console.log(params.location);
-        config.params.location = params.location;
+      if (location !== '') {
+        config.params.location = location;
+      }
+
+      if (features.includes('Automatic')) {
+        config.params.transmission = 'automatic';
+      }
+
+      if (features.includes('AC')) {
+        config.params.AC = true;
+      }
+      if (features.includes('TV')) {
+        config.params.TV = true;
+      }
+      if (features.includes('Kitchen')) {
+        config.params.kitchen = true;
+      }
+      if (features.includes('Bathroom')) {
+        config.params.bathroom = true;
+      }
+
+      if (vehicle === 'Alcove') {
+        config.params.form = 'alcove';
+      } else if (vehicle === 'Fully Integrated') {
+        config.params.form = 'fullyIntegrated';
+      } else if (vehicle === 'Van') {
+        config.params.form = 'panelTruck';
       }
 
       const response = await axios.get('/campers', config);
