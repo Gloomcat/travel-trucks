@@ -39,11 +39,14 @@ const Location = () => {
 
   return (
     <div className={css.container}>
-      <label className={css.label}>Location</label>
+      <label className={css.label} htmlFor={locationInputId}>
+        Location
+      </label>
       <div className={css.row}>
         <input
           className={css.input}
           type="text"
+          name="location"
           value={filter}
           onChange={handleInputChange}
           placeholder={
