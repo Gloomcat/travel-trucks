@@ -4,7 +4,7 @@ import { City } from 'country-state-city';
 const UKRAINE_COUNTRY_CODE = 'UA';
 
 export const getAllCities = createAsyncThunk(
-  'locationFilter/getAllCities',
+  'location/getAllCities',
   async (_, thunkAPI) => {
     try {
       const data = City.getCitiesOfCountry(UKRAINE_COUNTRY_CODE);

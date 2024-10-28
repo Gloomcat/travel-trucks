@@ -3,14 +3,14 @@ import css from './Location.module.css';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { getAllCities } from '../../redux/locationFilterOperations';
+import { getAllCities } from '../../redux/locationOperations';
 import {
   setFilter,
   setLocation,
   selectFilteredCities,
   selectFilter,
   selectLocation,
-} from '../../redux/locationFilterSlice';
+} from '../../redux/locationSlice';
 
 import Icon from '../Icon/Icon';
 

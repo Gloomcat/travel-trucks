@@ -16,7 +16,7 @@ import {
   resetPagination,
   selectCurrentPage,
 } from '../../redux/paginationSlice';
-import { selectLocation } from '../../redux/locationFilterSlice';
+import { selectLocation } from '../../redux/locationSlice';
 
 import CamperList from '../../components/CamperList/CamperList';
 import LoadMore from '../../components/LoadMore/LoadMore';

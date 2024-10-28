@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getAllCities } from './locationFilterOperations';
+import { getAllCities } from './locationOperations';
 
 const handlePending = state => {
   state.isLoading = true;
@@ -10,8 +10,8 @@ const handleRejected = (state, action) => {
   state.error = action.payload;
 };
 
-const locationFilterSlice = createSlice({
-  name: 'locationFilter',
+const locationSlice = createSlice({
+  name: 'location',
   initialState: {
     cities: [],
     filter: '',
@@ -40,10 +40,10 @@ const locationFilterSlice = createSlice({
   },
 });
 
-export const { setFilter, setLocation } = locationFilterSlice.actions;
+export const { setFilter, setLocation } = locationSlice.actions;
 
 export const selectFilteredCities = state => {
-  const { cities, filter } = state.locationFilter;
+  const { cities, filter } = state.location;
   if (!filter) {
     return cities;
   }
@@ -53,7 +53,7 @@ export const selectFilteredCities = state => {
   );
 };
 
-export const selectFilter = state => state.locationFilter.filter;
-export const selectLocation = state => state.locationFilter.location;
+export const selectFilter = state => state.location.filter;
+export const selectLocation = state => state.location.location;
 
-export const locationFilterReducer = locationFilterSlice.reducer;
+export const locationReducer = locationSlice.reducer;
