@@ -52,7 +52,7 @@ To set up the project locally, follow these steps:
     ```
 5. **Open the application**:
 
-    Go to http://localhost:5173 in your browser to view the app.
+    Go to http://localhost:3000 in your browser to view the app.
 
 ### Usage
 1. **Home Page**: Browse the available campers or navigate to the catalog to filter options.
