@@ -39,6 +39,7 @@ const CamperDetailsPage = () => {
     toast.error(error);
   }, [error]);
 
+  // Do not add local components display state to redux
   const [detailsActive, setDetailsActive] = useState(true);
 
   return (

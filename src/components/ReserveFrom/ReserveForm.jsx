@@ -1,15 +1,23 @@
 import css from './ReserveForm.module.css';
 
-import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useId } from 'react';
+
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+
 import toast from 'react-hot-toast';
 
 import * as Yup from 'yup';
 
+import DatePickerField from '../DatePickerField/DatePickerField';
+
 const ReserveSchema = Yup.object().shape({
   name: Yup.string().required('Name is required.'),
-  email: Yup.string().email().required('Email is required.'),
-  date: Yup.date().required('Booking date is required.'),
+  email: Yup.string()
+    .email('Email is not valid.')
+    .required('Email is required.'),
+  date: Yup.date('Date must be in future.').required(
+    'Booking date is required.'
+  ),
   comment: Yup.string(),
 });
 
@@ -64,12 +72,11 @@ const ReserveForm = ({ camperName }) => {
             <ErrorMessage className={css.error} name="email" component="span" />
           </div>
           <div className={css['field-container']}>
-            <Field
-              type="text"
-              name="date"
+            <DatePickerField
               className={css.field}
+              name="date"
+              placeholderText={'Booking date*'}
               id={dateFieldId}
-              placeholder={'Booking date*'}
             />
             <ErrorMessage className={css.error} name="date" component="span" />
           </div>
