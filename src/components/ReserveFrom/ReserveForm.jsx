@@ -9,6 +9,7 @@ import toast from 'react-hot-toast';
 import * as Yup from 'yup';
 
 import DatePickerField from '../DatePickerField/DatePickerField';
+import Button from '../Button/Button';
 
 const ReserveSchema = Yup.object().shape({
   name: Yup.string().required('Name is required.'),
@@ -96,9 +97,7 @@ const ReserveForm = ({ camperName }) => {
               component="span"
             />
           </div>
-          <button type="submit" className={css.button}>
-            Send
-          </button>
+          <Button className={css.submit} type={'submit'} text={'Send'} />
         </Form>
       </Formik>
     </div>

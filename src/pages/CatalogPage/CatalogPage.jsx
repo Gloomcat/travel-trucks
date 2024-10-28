@@ -19,7 +19,7 @@ import { selectChosenVehicleType } from '../../redux/filtersSlice';
 import { selectFavoritesEnabled } from '../../redux/favoritesSlice';
 
 import CamperList from '../../components/CamperList/CamperList';
-import LoadMore from '../../components/LoadMore/LoadMore';
+import LoadMoreButton from '../../components/LoadMoreButton/LoadMoreButton';
 import Loader from '../../components/Loader/Loader';
 import Location from '../../components/Location/Location';
 import Filters from '../../components/Filters/Filters';
@@ -85,7 +85,7 @@ const CatalogPage = () => {
             {loading && <Loader />}
             {current * CAMPERS_LIMIT < total &&
               !isFavoritesEnabled &&
-              !loading && <LoadMore />}
+              !loading && <LoadMoreButton />}
           </div>
         </div>
       </section>

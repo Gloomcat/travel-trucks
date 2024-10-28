@@ -8,6 +8,7 @@ import { toggleFavorite, selectFavorites } from '../../redux/favoritesSlice';
 
 import FeatureList from '../FeatureList/FeatureList';
 import Icon from '../Icon/Icon';
+import Button from '../Button/Button';
 
 const Camper = ({ camper }) => {
   const favorites = useSelector(selectFavorites);
@@ -74,7 +75,7 @@ const Camper = ({ camper }) => {
         <p className={css.description}>{camper.description}</p>
         <FeatureList camper={camper} />
         <Link to={`/catalog/${camper.id}`} state={pageLocation}>
-          <button className={css.button}>Show more</button>
+          <Button text={'Show more'} />
         </Link>
       </div>
     </div>

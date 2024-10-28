@@ -2,6 +2,8 @@ import css from './HomePage.module.css';
 
 import { Link } from 'react-router-dom';
 
+import Button from '../../components/Button/Button';
+
 const HomePage = () => {
   return (
     <main>
@@ -12,9 +14,7 @@ const HomePage = () => {
             You can find everything you want in our catalog
           </h2>
           <Link to="/catalog">
-            <button type="button" className={css['hero-button']}>
-              View Now
-            </button>
+            <Button text={'View Now'} />
           </Link>
         </div>
       </section>
