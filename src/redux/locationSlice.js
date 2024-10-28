@@ -48,6 +48,11 @@ export const selectFilteredCities = state => {
     return cities;
   }
 
+  // Do not run filtering without more precise match
+  if (filter.length < 2) {
+    return cities;
+  }
+
   return cities.filter(city =>
     city.name.toLowerCase().startsWith(filter.toLowerCase())
   );
