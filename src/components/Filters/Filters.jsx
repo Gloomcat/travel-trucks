@@ -10,6 +10,10 @@ import {
   selectChosenFeatures,
   selectChosenVehicleType,
 } from '../../redux/filtersSlice';
+import {
+  toggleFavoritesEnabled,
+  selectFavoritesEnabled,
+} from '../../redux/favoritesSlice';
 
 import Icon from '../Icon/Icon';
 
@@ -19,19 +23,38 @@ const Filters = () => {
   const selectedFeatures = useSelector(selectChosenFeatures);
   const selectedVehicleType = useSelector(selectChosenVehicleType);
 
+  const isFavoritesEnabled = useSelector(selectFavoritesEnabled);
+
   const dispatch = useDispatch();
 
   const handleFeatureClick = featureName => {
-    dispatch(toggleFeature(featureName));
+    if (!isFavoritesEnabled) {
+      dispatch(toggleFeature(featureName));
+    }
   };
 
   const handleVehicleTypeClick = typeName => {
-    dispatch(toggleVehicleType(typeName));
+    if (!isFavoritesEnabled) {
+      dispatch(toggleVehicleType(typeName));
+    }
+  };
+
+  const handleFavoritesClick = () => {
+    dispatch(toggleFavoritesEnabled());
   };
 
   return (
     <div className={css.container}>
       <p className={css.label}>Filters</p>
+      <h3 className={css.header}>Favorites</h3>
+      <div
+        onClick={() => handleFavoritesClick()}
+        className={`${css.filter} ${css.favorites} ${
+          isFavoritesEnabled ? css.selected : ''
+        }`}
+      >
+        <Icon className={css.icon} name={'icon-heart'} width={32} height={32} />
+      </div>
       <h3 className={css.header}>Vehicle Equipment</h3>
       <ul className={css.filters}>
         {features.map(feature => (
@@ -39,7 +62,9 @@ const Filters = () => {
             key={features.indexOf(feature)}
             onClick={() => handleFeatureClick(feature.name)}
             className={`${css.filter} ${
-              selectedFeatures.includes(feature.name) ? css.selected : ''
+              selectedFeatures.includes(feature.name) && !isFavoritesEnabled
+                ? css.selected
+                : ''
             }`}
           >
             <Icon
@@ -59,7 +84,9 @@ const Filters = () => {
             key={vehicleTypes.indexOf(vehicleType)}
             onClick={() => handleVehicleTypeClick(vehicleType.name)}
             className={`${css.filter} ${
-              selectedVehicleType === vehicleType.name ? css.selected : ''
+              selectedVehicleType === vehicleType.name && !isFavoritesEnabled
+                ? css.selected
+                : ''
             }`}
           >
             <Icon

@@ -8,7 +8,6 @@ import {
   resetCampers,
   selectIsLoading,
   selectTotal,
-  selectError,
 } from '../../redux/campersSlice';
 import {
   resetPagination,
@@ -17,6 +16,7 @@ import {
 import { selectLocation } from '../../redux/locationSlice';
 import { selectChosenFeatures } from '../../redux/filtersSlice';
 import { selectChosenVehicleType } from '../../redux/filtersSlice';
+import { selectFavoritesEnabled } from '../../redux/favoritesSlice';
 
 import CamperList from '../../components/CamperList/CamperList';
 import LoadMore from '../../components/LoadMore/LoadMore';
@@ -26,7 +26,6 @@ import Filters from '../../components/Filters/Filters';
 
 const CatalogPage = () => {
   const loading = useSelector(selectIsLoading);
-  const error = useSelector(selectError);
   const total = useSelector(selectTotal);
 
   const current = useSelector(selectCurrentPage);
@@ -35,24 +34,43 @@ const CatalogPage = () => {
 
   const selectedFeatures = useSelector(selectChosenFeatures);
   const selectedVehicleType = useSelector(selectChosenVehicleType);
+  const isFavoritesEnabled = useSelector(selectFavoritesEnabled);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(resetCampers());
     dispatch(resetPagination());
-  }, [dispatch, location, selectedFeatures, selectedVehicleType]);
+  }, [
+    dispatch,
+    location,
+    selectedFeatures,
+    selectedVehicleType,
+    isFavoritesEnabled,
+  ]);
 
   useEffect(() => {
-    dispatch(
-      fetchCampers({
-        page: current,
-        location: location,
-        features: selectedFeatures,
-        vehicle: selectedVehicleType,
-      })
-    );
-  }, [dispatch, current, location, selectedFeatures, selectedVehicleType]);
+    if (isFavoritesEnabled) {
+      dispatch(fetchCampers({}));
+    } else {
+      dispatch(
+        fetchCampers({
+          page: current,
+          limit: CAMPERS_LIMIT,
+          location: location,
+          features: selectedFeatures,
+          vehicle: selectedVehicleType,
+        })
+      );
+    }
+  }, [
+    dispatch,
+    current,
+    location,
+    selectedFeatures,
+    selectedVehicleType,
+    isFavoritesEnabled,
+  ]);
 
   return (
     <main>
@@ -63,14 +81,11 @@ const CatalogPage = () => {
             <Filters />
           </div>
           <div className={css.campers}>
-            {error && (
-              <h2 className={css.empty}>
-                There is no campers for selected filters or location.
-              </h2>
-            )}
             <CamperList />
             {loading && <Loader />}
-            {current * CAMPERS_LIMIT < total && !loading && <LoadMore />}
+            {current * CAMPERS_LIMIT < total &&
+              !isFavoritesEnabled &&
+              !loading && <LoadMore />}
           </div>
         </div>
       </section>

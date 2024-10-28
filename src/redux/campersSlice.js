@@ -1,6 +1,7 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createSelector } from '@reduxjs/toolkit';
 
 import { fetchCampers } from './campersOperations';
+import { selectFavorites, selectFavoritesEnabled } from './favoritesSlice';
 
 const handlePending = state => {
   state.isLoading = true;
@@ -57,6 +58,17 @@ export const { resetCampers } = slice.actions;
 export const selectCampers = state => {
   return state.campers.items;
 };
+
+export const selectFavoriteCampers = createSelector(
+  [selectCampers, selectFavorites, selectFavoritesEnabled],
+  (campers, favorites, enabled) => {
+    if (enabled) {
+      return campers.filter(camper => favorites.includes(camper.id));
+    }
+
+    return campers;
+  }
+);
 
 export const selectIsLoading = state => {
   return state.campers.isLoading;

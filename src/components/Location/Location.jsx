@@ -11,6 +11,7 @@ import {
   selectFilter,
   selectLocation,
 } from '../../redux/locationSlice';
+import { selectFavoritesEnabled } from '../../redux/favoritesSlice';
 
 import Icon from '../Icon/Icon';
 
@@ -18,6 +19,7 @@ const Location = () => {
   const cities = useSelector(selectFilteredCities);
   const filter = useSelector(selectFilter);
   const location = useSelector(selectLocation);
+  const isFavoritesEnabled = useSelector(selectFavoritesEnabled);
 
   const dispatch = useDispatch();
 
@@ -42,7 +44,10 @@ const Location = () => {
           type="text"
           value={filter}
           onChange={handleInputChange}
-          placeholder={location === '' ? 'City' : location}
+          placeholder={
+            location === '' || isFavoritesEnabled ? 'City' : location
+          }
+          disabled={isFavoritesEnabled}
         />
         <Icon
           className={css.icon}

@@ -7,42 +7,49 @@ export const CAMPERS_LIMIT = 4;
 
 export const fetchCampers = createAsyncThunk(
   '/campers/fetchCampers',
-  async ({ page, location, features, vehicle }, thunkAPI) => {
+  async ({ page, limit, location, features, vehicle }, thunkAPI) => {
     try {
       const config = {
-        params: {
-          limit: CAMPERS_LIMIT,
-          page: page,
-        },
+        params: {},
       };
+
+      if (page) {
+        config.params.page = page;
+      }
+
+      if (limit) {
+        config.params.limit = limit;
+      }
 
       if (location !== '') {
         config.params.location = location;
       }
 
-      if (features.includes('Automatic')) {
-        config.params.transmission = 'automatic';
-      }
+      if (features) {
+        if (features.includes('Automatic')) {
+          config.params.transmission = 'automatic';
+        }
 
-      if (features.includes('AC')) {
-        config.params.AC = true;
-      }
-      if (features.includes('TV')) {
-        config.params.TV = true;
-      }
-      if (features.includes('Kitchen')) {
-        config.params.kitchen = true;
-      }
-      if (features.includes('Bathroom')) {
-        config.params.bathroom = true;
-      }
+        if (features.includes('AC')) {
+          config.params.AC = true;
+        }
+        if (features.includes('TV')) {
+          config.params.TV = true;
+        }
+        if (features.includes('Kitchen')) {
+          config.params.kitchen = true;
+        }
+        if (features.includes('Bathroom')) {
+          config.params.bathroom = true;
+        }
 
-      if (vehicle === 'Alcove') {
-        config.params.form = 'alcove';
-      } else if (vehicle === 'Fully Integrated') {
-        config.params.form = 'fullyIntegrated';
-      } else if (vehicle === 'Van') {
-        config.params.form = 'panelTruck';
+        if (vehicle === 'Alcove') {
+          config.params.form = 'alcove';
+        } else if (vehicle === 'Fully Integrated') {
+          config.params.form = 'fullyIntegrated';
+        } else if (vehicle === 'Van') {
+          config.params.form = 'panelTruck';
+        }
       }
 
       const response = await axios.get('/campers', config);

@@ -1,9 +1,14 @@
 import css from './Camper.module.css';
 
+import { useDispatch, useSelector } from 'react-redux';
+
+import { toggleFavorite, selectFavorites } from '../../redux/favoritesSlice';
+
 import Icon from '../Icon/Icon';
 
 const Camper = ({ camperData }) => {
   const {
+    id,
     name,
     price,
     rating,
@@ -66,6 +71,14 @@ const Camper = ({ camperData }) => {
     },
   ].filter(feature => feature.icon); // Filter out features without icons
 
+  const favorites = useSelector(selectFavorites);
+
+  const dispatch = useDispatch();
+
+  const handleFavoriteClick = () => {
+    dispatch(toggleFavorite(id));
+  };
+
   return (
     <div className={css.card}>
       <img src={gallery[0].thumb} alt={name} className={css.image} />
@@ -74,12 +87,22 @@ const Camper = ({ camperData }) => {
           <div className={css.header}>
             <h2 className={css.title}>{name}</h2>
             <p className={css.price}>&#8364;{price.toFixed(2)}</p>
-            <Icon
-              className={css['favorite-icon']}
-              name="icon-heart"
-              width={24}
-              height={24}
-            />
+            <button
+              className={css['favorite-button']}
+              type="button"
+              onClick={() => {
+                handleFavoriteClick(id);
+              }}
+            >
+              <Icon
+                className={`${css['favorite-icon']} ${
+                  favorites.includes(id) ? css.selected : ''
+                }`}
+                name="icon-heart"
+                width={24}
+                height={24}
+              />
+            </button>
           </div>
           <div className={css.meta}>
             <div className={css.rating}>

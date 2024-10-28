@@ -5,7 +5,7 @@
   overflow: hidden;
   padding: 24px;
   gap: 24px;
-  max-width: 888px;
+  max-width: 889px;
 }
 
 .image {
@@ -40,6 +40,15 @@
   font-weight: 600;
 }
 
+.favorite-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  border: none;
+  background-color: transparent;
+}
+
 .favorite-icon {
   fill: #101828;
 }
@@ -60,6 +69,10 @@
 
 .favorite-icon:hover,
 .favorite-icon:focus {
+  fill: #E44848;
+}
+
+.selected {
   fill: #E44848;
 }
 

@@ -4,6 +4,7 @@ import { campersReducer } from './campersSlice';
 import { paginationReducer } from './paginationSlice';
 import { locationReducer } from './locationSlice';
 import { filtersReducer } from './filtersSlice';
+import { favoritesReducer } from './favoritesSlice';
 
 export const store = configureStore({
   reducer: {
@@ -11,5 +12,6 @@ export const store = configureStore({
     pagination: paginationReducer,
     location: locationReducer,
     filters: filtersReducer,
+    favorites: favoritesReducer,
   },
 });

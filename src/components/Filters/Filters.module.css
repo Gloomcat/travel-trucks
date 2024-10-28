@@ -18,6 +18,10 @@
   border-bottom: 1px solid #DADDE1;
 }
 
+.favorites {
+  margin-bottom: 32px;
+}
+
 .filters {
   display: flex;
   row-gap: 8px;
@@ -31,6 +35,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
   padding: 4px 16px;
   width: 112px;
   height: 96px;
