@@ -49,7 +49,7 @@ export const selectFilteredCities = state => {
   }
 
   return cities.filter(city =>
-    city.name.toLowerCase().includes(filter.toLowerCase())
+    city.name.toLowerCase().startsWith(filter.toLowerCase())
   );
 };
 
