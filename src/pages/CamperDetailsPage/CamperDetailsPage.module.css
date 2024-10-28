@@ -84,8 +84,9 @@
 
 .info-link {
   font-size: 20px;
+  line-height: 24px;
   padding-bottom: 26px;
-  font-weight: 600px;
+  font-weight: 600;
   cursor: pointer;
   color: #101828;
   transition-property: all;

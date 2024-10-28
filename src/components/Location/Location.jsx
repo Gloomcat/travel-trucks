@@ -1,6 +1,6 @@
 import css from './Location.module.css';
 
-import { useEffect } from 'react';
+import { useEffect, useId } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { getAllCities } from '../../redux/locationOperations';
@@ -20,6 +20,8 @@ const Location = () => {
   const filter = useSelector(selectFilter);
   const location = useSelector(selectLocation);
   const isFavoritesEnabled = useSelector(selectFavoritesEnabled);
+
+  const locationInputId = useId();
 
   const dispatch = useDispatch();
 
@@ -47,6 +49,7 @@ const Location = () => {
           placeholder={
             location === '' || isFavoritesEnabled ? 'City' : location
           }
+          id={locationInputId}
           disabled={isFavoritesEnabled}
         />
         <Icon

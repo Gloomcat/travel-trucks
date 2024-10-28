@@ -7,11 +7,14 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { fetchCamperById } from '../../redux/campersOperations';
-import { selectActiveCamper } from '../../redux/campersSlice';
+import { selectActiveCamper, selectError } from '../../redux/campersSlice';
 
 import Icon from '../../components/Icon/Icon';
 import VehicleDetails from '../../components/VehicleDetails/VehicleDetails';
 import VehicleReviews from '../../components/VehicleReviews/VehicleReviews';
+import ReserveForm from '../../components/ReserveFrom/ReserveForm';
+
+import toast from 'react-hot-toast';
 
 const CamperDetailsPage = () => {
   const { id } = useParams();
@@ -26,6 +29,15 @@ const CamperDetailsPage = () => {
   }, [dispatch, id]);
 
   const camper = useSelector(selectActiveCamper);
+  const error = useSelector(selectError);
+
+  useEffect(() => {
+    if (!error) {
+      return;
+    }
+
+    toast.error(error);
+  }, [error]);
 
   const [detailsActive, setDetailsActive] = useState(true);
 
@@ -116,7 +128,7 @@ const CamperDetailsPage = () => {
               ) : (
                 <VehicleReviews reviews={camper.reviews} id={'reviews'} />
               )}
-              <form className={css.reserve}></form>
+              <ReserveForm camperName={camper.name} />
             </div>
           </div>
         </section>
