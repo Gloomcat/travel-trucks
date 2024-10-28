@@ -11,10 +11,8 @@ const slice = createSlice({
       const id = action.payload;
       const index = state.items.indexOf(id);
       if (index >= 0) {
-        console.log('Remove from favorites:', id);
         state.items.splice(index, 1);
       } else {
-        console.log('Add to favorites:', id);
         state.items.push(id);
       }
     },
