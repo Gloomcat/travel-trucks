@@ -52,7 +52,7 @@ const FeatureList = ({ camper }) => {
   return (
     <ul className={css.features}>
       {features.map(feature => (
-        <li key={feature.name} className={css.feature}>
+        <li key={features.indexOf(feature)} className={css.feature}>
           <Icon
             className={css[feature.class]}
             name={feature.icon}
