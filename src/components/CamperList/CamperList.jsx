@@ -20,7 +20,7 @@ const CamperList = () => {
     <ul className={css['camper-list']}>
       {campers.map(camper => (
         <li key={camper.id}>
-          <Camper camperData={camper} />
+          <Camper camper={camper} />
         </li>
       ))}
     </ul>

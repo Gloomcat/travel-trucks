@@ -1,0 +1,30 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+  width: 631px;
+  padding: 44px 52px;
+  background-color: #F7F7F7;
+  border-radius: 10px;
+}
+
+.header {
+  font-size: 20px;
+  line-height: 24px;
+  padding-bottom: 24px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid #DADDE1;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.detail {
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  font-weight: 500;
+}

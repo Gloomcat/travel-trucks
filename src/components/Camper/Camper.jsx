@@ -1,102 +1,46 @@
 import css from './Camper.module.css';
 
+import { Link, useLocation } from 'react-router-dom';
+
 import { useDispatch, useSelector } from 'react-redux';
 
 import { toggleFavorite, selectFavorites } from '../../redux/favoritesSlice';
 
+import FeatureList from '../FeatureList/FeatureList';
 import Icon from '../Icon/Icon';
 
-const Camper = ({ camperData }) => {
-  const {
-    id,
-    name,
-    price,
-    rating,
-    location,
-    description,
-    transmission,
-    engine,
-    AC,
-    bathroom,
-    kitchen,
-    TV,
-    radio,
-    refrigerator,
-    microwave,
-    gas,
-    water,
-    gallery,
-    reviews,
-  } = camperData;
-
-  // Prepare features based on available properties
-  const features = [
-    {
-      name: 'Automatic',
-      icon: transmission === 'automatic' ? 'icon-diagram' : null,
-    },
-    { name: engine, class: 'fill-icon', icon: 'icon-fuel' },
-    {
-      name: 'Kitchen',
-      class: 'fill-icon',
-      icon: kitchen ? 'icon-cup-hot' : null,
-    },
-    { name: 'AC', class: 'fill-icon', icon: AC ? 'icon-wind' : null },
-    {
-      name: 'Bathroom',
-      class: 'fill-icon',
-      icon: bathroom ? 'icon-shower' : null,
-    },
-    { name: 'TV', class: 'fill-icon', icon: TV ? 'icon-tv' : null },
-    { name: 'Radio', class: 'fill-icon', icon: radio ? 'icon-radio' : null },
-    {
-      name: 'Refrigerator',
-      class: 'fill-icon',
-      icon: refrigerator ? 'icon-fridge' : null,
-    },
-    {
-      name: 'Microwave',
-      class: 'stroke-icon',
-      icon: microwave ? 'icon-microwave' : null,
-    },
-    {
-      name: 'Gas',
-      class: 'stroke-icon',
-      icon: gas ? 'icon-gas-stove' : null,
-    },
-    {
-      name: 'Water',
-      class: 'stroke-icon',
-      icon: water ? 'icon-water' : null,
-    },
-  ].filter(feature => feature.icon); // Filter out features without icons
-
+const Camper = ({ camper }) => {
   const favorites = useSelector(selectFavorites);
 
   const dispatch = useDispatch();
+  const pageLocation = useLocation();
 
   const handleFavoriteClick = () => {
-    dispatch(toggleFavorite(id));
+    dispatch(toggleFavorite(camper.id));
   };
 
   return (
     <div className={css.card}>
-      <img src={gallery[0].thumb} alt={name} className={css.image} />
+      <img
+        src={camper.gallery[0].thumb}
+        alt={camper.name}
+        className={css.image}
+      />
       <div className={css.content}>
         <div>
           <div className={css.header}>
-            <h2 className={css.title}>{name}</h2>
-            <p className={css.price}>&#8364;{price.toFixed(2)}</p>
+            <h2 className={css.title}>{camper.name}</h2>
+            <p className={css.price}>&#8364;{camper.price.toFixed(2)}</p>
             <button
               className={css['favorite-button']}
               type="button"
               onClick={() => {
-                handleFavoriteClick(id);
+                handleFavoriteClick();
               }}
             >
               <Icon
                 className={`${css['favorite-icon']} ${
-                  favorites.includes(id) ? css.selected : ''
+                  favorites.includes(camper.id) ? css.selected : ''
                 }`}
                 name="icon-heart"
                 width={24}
@@ -113,7 +57,7 @@ const Camper = ({ camperData }) => {
                 height={16}
               />
               <p className={css['meta-text']}>
-                {rating} ({reviews.length} Reviews)
+                {camper.rating} ({camper.reviews.length} Reviews)
               </p>
             </div>
             <div className={css.location}>
@@ -123,25 +67,15 @@ const Camper = ({ camperData }) => {
                 width={16}
                 height={16}
               />
-              <p className={css['meta-text']}>{location}</p>
+              <p className={css['meta-text']}>{camper.location}</p>
             </div>
           </div>
         </div>
-        <p className={css.description}>{description}</p>
-        <ul className={css.features}>
-          {features.map(feature => (
-            <li key={feature.name} className={css.feature}>
-              <Icon
-                className={css[feature.class]}
-                name={feature.icon}
-                width={16}
-                height={16}
-              />
-              <p>{feature.name}</p>
-            </li>
-          ))}
-        </ul>
-        <button className={css.button}>Show more</button>
+        <p className={css.description}>{camper.description}</p>
+        <FeatureList camper={camper} />
+        <Link to={`/catalog/${camper.id}`} state={pageLocation}>
+          <button className={css.button}>Show more</button>
+        </Link>
       </div>
     </div>
   );

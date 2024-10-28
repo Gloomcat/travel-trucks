@@ -1,6 +1,6 @@
 import { createSlice, createSelector } from '@reduxjs/toolkit';
 
-import { fetchCampers } from './campersOperations';
+import { fetchCampers, fetchCamperById } from './campersOperations';
 import { selectFavorites, selectFavoritesEnabled } from './favoritesSlice';
 
 const handlePending = state => {
@@ -8,17 +8,11 @@ const handlePending = state => {
   state.error = null;
 };
 
-const handleRejected = (state, action) => {
-  state.isLoading = false;
-  state.error = action.payload;
-  state.items = [];
-  state.total = 0;
-};
-
 const slice = createSlice({
   name: 'campers',
   initialState: {
     items: [],
+    active: {},
     total: 0,
     isLoading: false,
     error: null,
@@ -32,7 +26,17 @@ const slice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(fetchCampers.pending, handlePending)
-      .addCase(fetchCampers.rejected, handleRejected)
+      .addCase(fetchCamperById.pending, handlePending)
+      .addCase(fetchCampers.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+        state.items = [];
+        state.total = 0;
+      })
+      .addCase(fetchCamperById.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
       .addCase(fetchCampers.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
@@ -40,7 +44,6 @@ const slice = createSlice({
         // Init total count
         if (state.items.length == 0) {
           state.total = action.payload.total;
-          console.log('Set total:', state.total);
         }
 
         state.items.push(...action.payload.items);
@@ -48,7 +51,11 @@ const slice = createSlice({
         state.items = Array.from(
           new Map(state.items.map(item => [item.id, item])).values()
         );
-        console.log('Items:', state.items);
+      })
+      .addCase(fetchCamperById.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.active = action.payload;
       });
   },
 });
@@ -57,6 +64,10 @@ export const { resetCampers } = slice.actions;
 
 export const selectCampers = state => {
   return state.campers.items;
+};
+
+export const selectActiveCamper = state => {
+  return state.campers.active;
 };
 
 export const selectFavoriteCampers = createSelector(

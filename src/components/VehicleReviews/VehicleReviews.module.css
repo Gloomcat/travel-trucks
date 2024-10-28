@@ -1,0 +1,60 @@
+.reviews {
+  display: flex;
+  flex-direction: column;
+  gap: 44px;
+  padding: 44px 0;
+  width: 631px;
+}
+
+.review {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  background-color: #F2F4F7;
+}
+
+.logo {
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 600;
+  color: #E44848;
+}
+
+.name {
+  font-size: 16px;
+  font-weight: 500;
+  color: #101828;
+}
+
+.rating {
+  display: flex;
+  gap: 4px;
+}
+
+.fill-star {
+  fill: #FFC531;
+}
+
+.empty-star {
+  fill: #F2F4F7;
+}
+
+.comment {
+  font-size: 16px;
+  color: #475467
+}
