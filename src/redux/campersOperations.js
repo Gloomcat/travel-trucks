@@ -65,7 +65,6 @@ export const fetchCamperById = createAsyncThunk(
   async (id, thunkAPI) => {
     try {
       const response = await axios.get(`/campers/${id}`);
-      console.log(response.data);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
